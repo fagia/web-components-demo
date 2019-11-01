@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+
+  form-drafts-web-component:
+    image: form-drafts-web-component:1.0.0
+    build: ./form-drafts-web-component
+    ports:
+      - 3001:8080
+
+  movie-database-service:
+    image: movie-database-service:1.0.0
+    build: ./movie-database-service
+    ports:
+      - 3002:3000
+
+  movie-database-web-app:
+    image: movie-database-web-app:1.0.0
+    build: ./movie-database-web-app
+    ports:
+      - 3003:8080
+
+  movie-reviews-service:
+    image: movie-reviews-service:1.0.0
+    build: ./movie-reviews-service
+    ports:
+      - 3004:3000
+
+  movie-reviews-web-app:
+    image: movie-reviews-web-app:1.0.0
+    build: ./movie-reviews-web-app
+    ports:
+      - 3005:8080
