@@ -6,4 +6,6 @@ RUN npm ci
 
 COPY . .
 
-CMD [ "npm", "run", "start" ]
+ENV DEBUG=movie-database:*
+
+CMD [ "npm", "start" ]
