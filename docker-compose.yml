@@ -2,9 +2,9 @@ version: "3.7"
 
 services:
 
-  form-drafts-web-component:
-    image: form-drafts-web-component:1.0.0
-    build: ./form-drafts-web-component
+  movie-components:
+    image: movie-components:1.0.0
+    build: ./movie-components
     ports:
       - 3001:8080
 
