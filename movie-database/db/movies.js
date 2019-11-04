@@ -10,6 +10,9 @@ const movies = [
 ];
 
 const moviesDb = {
+    create: movie => {
+        movies.push(movie);
+    },
     getAll: () => {
         return movies;
     }

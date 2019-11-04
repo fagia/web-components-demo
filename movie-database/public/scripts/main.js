@@ -7,6 +7,9 @@
             if (this.status >= 200 && this.status < 400) {
                 const movies = JSON.parse(this.response);
                 const moviesList = document.getElementById('moviesList');
+                while (moviesList.firstChild) {
+                    moviesList.firstChild.remove();
+                }
                 movies.forEach(m => {
                     const movieItem = document.createElement('li');
                     movieItem.textContent = `${m.title} (${m.year})`;
@@ -22,8 +25,16 @@
         request.send();
     };
 
+    const listenOnMovieCreated = () => {
+        const addMovie = document.getElementById('addMovie');
+        addMovie.addEventListener('movieCreated', function (event) {
+            getMovies();
+        })
+    }
+
     const onReady = () => {
         getMovies();
+        listenOnMovieCreated();
     };
 
     if (document.readyState === 'complete' ||
