@@ -14,6 +14,10 @@ Docker
 
     docker-compose up
 
+Movie database application: http://localhost:3002/
+
+Movie reviews application: http://localhost:3003/
+
 ## Stop
 
 Kill the docker-compose process with `Ctrl+c`, then:
