@@ -1,8 +1,7 @@
 ; (function () {
-    const MOVIE_DB_API_PREFIX = '/api/movie-database';
     const getMovies = () => {
         const request = new XMLHttpRequest();
-        request.open('GET', `${MOVIE_DB_API_PREFIX}/movies`, true);
+        request.open('GET', '/api/movie-database/movies', true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const movies = JSON.parse(this.response);
