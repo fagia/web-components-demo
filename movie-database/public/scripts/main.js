@@ -27,9 +27,10 @@
     const listenOnMovieCreated = () => {
         const addMovie = document.getElementById('addMovie');
         addMovie.addEventListener('movieCreated', function (event) {
+            console.log('created movie: ', event.detail);
             getMovies();
         })
-    }
+    };
 
     const onReady = () => {
         getMovies();

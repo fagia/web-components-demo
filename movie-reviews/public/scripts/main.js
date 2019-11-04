@@ -62,9 +62,19 @@
         request.send();
     };
 
+    const listenOnMovieCreated = () => {
+        const addMovie = document.getElementById('addMovie');
+        addMovie.addEventListener('movieCreated', function (event) {
+            console.log('created movie: ', event.detail);
+            getMovies();
+            toggleAddMovie();
+        })
+    };
+
     const onReady = () => {
         getReviews();
         getMovies();
+        listenOnMovieCreated();
     };
 
     if (document.readyState === 'complete' ||
@@ -73,4 +83,13 @@
     } else {
         document.addEventListener('DOMContentLoaded', onReady);
     }
+
+    const toggleAddMovie = () => {
+        const select = document.getElementById('selectMovie');
+        const add = document.getElementById('addMovie');
+        select.style.display = select.style.display === 'none' ? '' : 'none';
+        add.style.display = add.style.display === 'none' ? '' : 'none';
+    };
+
+    window.toggleAddMovie = toggleAddMovie;
 })();

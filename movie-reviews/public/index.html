@@ -23,11 +23,15 @@
     <form action="/" method="POST">
       <fieldset>
         <legend>Add new review</legend>
-        <p>
+        <p id="selectMovie">
           <label>Movie:
             <select name="movieId" id="moviesSelect"></select>
           </label>
+          <span>or add <a href="javascript:toggleAddMovie();">new movie</a></span>
         </p>
+        <section>
+          <add-movie-component id="addMovie" style="display: none;"></add-movie-component>
+        </section>
         <p>
           <label>Description:
             <input type="text" name="description" />
@@ -42,7 +46,6 @@
       </fieldset>
     </form>
   </section>
-  <!--add-movie-component id="addMovie"></add-movie-component-->
 </body>
 
 </html>
