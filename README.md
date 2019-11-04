@@ -1,5 +1,7 @@
 # WEB COMPONENTS DEMO
 
+https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCsBJw/edit
+
 ## Requirements
 
 Docker
