@@ -20,6 +20,7 @@ const reviewsDb = {
         review.id = seq;
         reviews.push(review);
         seq++;
+        return review;
     },
     getAll: () => {
         return reviews;

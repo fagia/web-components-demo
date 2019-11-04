@@ -18,6 +18,7 @@ const moviesDb = {
         movie.id = seq;
         movies.push(movie);
         seq++;
+        return movie;
     },
     getAll: () => {
         return movies;

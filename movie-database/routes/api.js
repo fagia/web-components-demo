@@ -11,8 +11,7 @@ router.get('/movies/:id', function (req, res, next) {
 });
 
 router.post('/movies', function (req, res, next) {
-  moviesDb.create(req.body); // TODO validation
-  res.sendStatus(204);
+  res.send(moviesDb.create(req.body)); // TODO validation
 });
 
 module.exports = router;

@@ -23,7 +23,8 @@ export class AddMovieComponent {
         request.open('POST', '/api/movie-database/movies', true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
-                component.movieCreated.emit(component.movie);
+                const movie = JSON.parse(this.response);
+                component.movieCreated.emit(movie);
             } else {
                 console.error('got error from server', this.status, this.response);
             }

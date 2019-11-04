@@ -1,5 +1,5 @@
 ; (function () {
-    const getMovies = () => {
+    const initMoviesSelect = (selectedMovieId) => {
         const request = new XMLHttpRequest();
         request.open('GET', '/api/movie-database/movies', true);
         request.onload = function () {
@@ -13,6 +13,9 @@
                     const movieOption = document.createElement('option');
                     movieOption.setAttribute('value', m.id);
                     movieOption.textContent = `${m.title} (${m.year})`;
+                    if (selectedMovieId === m.id) {
+                        movieOption.setAttribute('selected', 'selected');
+                    }
                     moviesSelect.appendChild(movieOption);
                 });
             } else {
@@ -65,15 +68,16 @@
     const listenOnMovieCreated = () => {
         const addMovie = document.getElementById('addMovie');
         addMovie.addEventListener('movieCreated', function (event) {
-            console.log('created movie: ', event.detail);
-            getMovies();
+            const movie = event.detail;
+            console.log('created movie: ', movie);
+            initMoviesSelect(movie.id);
             toggleAddMovie();
         })
     };
 
     const onReady = () => {
         getReviews();
-        getMovies();
+        initMoviesSelect();
         listenOnMovieCreated();
     };
 

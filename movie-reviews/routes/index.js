@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  reviewsDb.create(req.body);
+  reviewsDb.create(req.body); // TODO validation
   res.set('Location', '/');
   res.sendStatus(303);
 });
