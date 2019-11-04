@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'movie-components',
+  globalScript: './src/globals/global.ts',
   outputTargets: [
     {
       type: 'dist',

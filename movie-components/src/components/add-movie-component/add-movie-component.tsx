@@ -1,4 +1,4 @@
-import { Component, h, EventEmitter, Event } from '@stencil/core';
+import { Component, Prop, EventEmitter, Event, h } from '@stencil/core';
 
 class Movie {
     title: string;
@@ -7,12 +7,18 @@ class Movie {
 
 @Component({
     tag: 'add-movie-component',
-    styleUrl: 'add-movie-component.css',
+    styleUrls: {
+        default: 'stylesheets/add-movie-component.default.css',
+        green: 'stylesheets/add-movie-component.green.css',
+        blue: 'stylesheets/add-movie-component.blue.css',
+    },
     shadow: true
 })
 export class AddMovieComponent {
 
     private movie: Movie = new Movie();
+
+    @Prop() mode: string;
 
     @Event() movieCreated: EventEmitter;
 
@@ -42,6 +48,7 @@ export class AddMovieComponent {
         this.movie.year = event.target.value;
     }
     render() {
+        console.log('rendering component with mode: ' + (this.mode ? this.mode : 'default'));
         return (
             <form onSubmit={(e) => this.handleSubmit(e)}>
                 <fieldset>
