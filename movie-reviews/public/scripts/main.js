@@ -28,41 +28,42 @@
         request.send();
     };
     const getReviews = () => {
-        const request = new XMLHttpRequest();
-        request.open('GET', '/api/movie-reviews/reviews', true);
-        request.onload = function () {
+        const reviewsRequest = new XMLHttpRequest();
+        reviewsRequest.open('GET', '/api/movie-reviews/reviews', true);
+        reviewsRequest.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const reviews = JSON.parse(this.response);
-                const reviewsList = document.getElementById('reviewsList');
-                while (reviewsList.firstChild) {
-                    reviewsList.firstChild.remove();
-                }
-                reviews.forEach(r => {
-                    const request = new XMLHttpRequest();
-                    request.open('GET', `/api/movie-database/movies/${r.movieId}`, true);
-                    request.onload = function () {
-                        if (this.status >= 200 && this.status < 400) {
-                            const movie = JSON.parse(this.response);
+                const moviesRequest = new XMLHttpRequest();
+                moviesRequest.open('GET', '/api/movie-database/movies', true);
+                moviesRequest.onload = function () {
+                    if (this.status >= 200 && this.status < 400) {
+                        const movies = JSON.parse(this.response);
+                        const reviewsList = document.getElementById('reviewsList');
+                        while (reviewsList.firstChild) {
+                            reviewsList.firstChild.remove();
+                        }
+                        reviews.forEach(r => {
+                            const movie = movies.filter(m => m.id === r.movieId)[0];
                             const reviewItem = document.createElement('li');
                             reviewItem.textContent = `[${r.rating}/10] ${movie.title} (${movie.year}) - ${r.description}`;
                             reviewsList.appendChild(reviewItem);
-                        } else {
-                            console.error('got error from server', this.status, this.response);
-                        }
-                    };
-                    request.onerror = function () {
-                        console.error('failed to send request');
-                    };
-                    request.send();
-                });
+                        });
+                    } else {
+                        console.error('got error from server', this.status, this.response);
+                    }
+                };
+                moviesRequest.onerror = function () {
+                    console.error('failed to send movies request');
+                };
+                moviesRequest.send();
             } else {
                 console.error('got error from server', this.status, this.response);
             }
         };
-        request.onerror = function () {
-            console.error('failed to send request');
+        reviewsRequest.onerror = function () {
+            console.error('failed to send reviews request');
         };
-        request.send();
+        reviewsRequest.send();
     };
 
     const listenOnMovieCreated = () => {
