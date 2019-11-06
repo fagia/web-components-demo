@@ -9,14 +9,16 @@
                 while (moviesSelect.firstChild) {
                     moviesSelect.firstChild.remove();
                 }
+                const movieOptionTemplate = document.getElementById('movieOptionTemplate').content;
                 movies.forEach(m => {
-                    const movieOption = document.createElement('option');
+                    const movieOptionEl = document.importNode(movieOptionTemplate, true);
+                    const movieOption = movieOptionEl.querySelector('option');
                     movieOption.setAttribute('value', m.id);
                     movieOption.textContent = `${m.title} (${m.year})`;
                     if (selectedMovieId === m.id) {
                         movieOption.setAttribute('selected', 'selected');
                     }
-                    moviesSelect.appendChild(movieOption);
+                    moviesSelect.appendChild(movieOptionEl);
                 });
             } else {
                 console.error('got error from server', this.status, this.response);
@@ -42,11 +44,12 @@
                         while (reviewsList.firstChild) {
                             reviewsList.firstChild.remove();
                         }
+                        const reviewItemTemplate = document.getElementById('reviewItemTemplate').content;
                         reviews.forEach(r => {
                             const movie = movies.filter(m => m.id === r.movieId)[0];
-                            const reviewItem = document.createElement('li');
-                            reviewItem.textContent = `[${r.rating}/10] ${movie.title} (${movie.year}) - ${r.description}`;
-                            reviewsList.appendChild(reviewItem);
+                            const reviewItemEl = document.importNode(reviewItemTemplate, true);
+                            reviewItemEl.querySelector('li').textContent = `[${r.rating}/10] ${movie.title} (${movie.year}) - ${r.description}`;
+                            reviewsList.appendChild(reviewItemEl);
                         });
                     } else {
                         console.error('got error from server', this.status, this.response);

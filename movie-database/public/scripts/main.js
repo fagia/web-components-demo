@@ -9,10 +9,11 @@
                 while (moviesList.firstChild) {
                     moviesList.firstChild.remove();
                 }
+                const movieItemTemplate = document.getElementById('movieItemTemplate').content;
                 movies.forEach(m => {
-                    const movieItem = document.createElement('li');
-                    movieItem.textContent = `${m.title} (${m.year})`;
-                    moviesList.appendChild(movieItem);
+                    const movieItemEl = document.importNode(movieItemTemplate, true);
+                    movieItemEl.querySelector('li').textContent = `${m.title} (${m.year})`;
+                    moviesList.appendChild(movieItemEl);
                 });
             } else {
                 console.error('got error from server', this.status, this.response);

@@ -18,6 +18,9 @@
     <h2>Reviews:</h2>
     <ul id="reviewsList">
     </ul>
+    <template id="reviewItemTemplate">
+      <li></li>
+    </template>
   </section>
   <section>
     <form action="/" method="POST">
@@ -26,6 +29,9 @@
         <p id="selectMovie">
           <label>Movie:
             <select name="movieId" id="moviesSelect"></select>
+            <template id="movieOptionTemplate">
+              <option></option>
+            </template>
           </label>
           <span>or add <a href="javascript:toggleAddMovie();">new movie</a></span>
           <!--span>or add <a href="http://localhost:3002/">new movie</a></span-->
