@@ -45,10 +45,16 @@
                             reviewsList.firstChild.remove();
                         }
                         const reviewItemTemplate = document.getElementById('reviewItemTemplate').content;
+                        const reviewRatingStar = document.getElementById('reviewRatingStar').content;
                         reviews.forEach(r => {
                             const movie = movies.filter(m => m.id === r.movieId)[0];
                             const reviewItemEl = document.importNode(reviewItemTemplate, true);
-                            reviewItemEl.querySelector('li').textContent = `[${r.rating}/10] ${movie.title} (${movie.year}) - ${r.description}`;
+                            const ratingEl = reviewItemEl.querySelector('.card-header-icon');
+                            for (var i = 0; i < r.rating; i++) {
+                                ratingEl.appendChild(document.importNode(reviewRatingStar, true));
+                            }
+                            reviewItemEl.querySelector('.card-header-title-suffix').textContent = `${movie.title} (${movie.year})`;
+                            reviewItemEl.querySelector('.content').textContent = r.description;
                             reviewsList.appendChild(reviewItemEl);
                         });
                     } else {

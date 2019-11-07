@@ -5,54 +5,136 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <title>Movie Reviews</title>
-  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <link href="/stylesheets/main.css" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="/scripts/main.js"></script>
   <script type="module" src="/movie-components/movie-components.esm.js"></script>
   <script nomodule src="/movie-components/movie-components.js"></script>
 </head>
 
 <body>
-  <h1>Movie Reviews</h1>
-  <p>E.G. <a href="https://www.rottentomatoes.com/">Rotten Tomatoes</a></p>
-  <section>
-    <h2>Reviews:</h2>
-    <ul id="reviewsList">
-    </ul>
-    <template id="reviewItemTemplate">
-      <li></li>
-    </template>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        <span class="icon">
+          <i class="fas fa-feather-alt"></i>
+        </span>
+        Movie Reviews
+      </h1>
+      <p class="subtitle">E.G. <a href="https://www.rottentomatoes.com/">Rotten Tomatoes</a></p>
+
+      <section id="reviewsList">
+      </section>
+      <template id="reviewItemTemplate">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span class="card-header-title-prefix">A review about...</span>
+              <span class="card-header-title-suffix"></span>
+            </p>
+            <p class="card-header-icon"></p>
+          </header>
+          <div class="card-content">
+            <div class="content"></div>
+          </div>
+        </div>
+        <br>
+      </template>
+      <template id="reviewRatingStar">
+        <span class="icon">
+          <i class="fas fa-star" aria-hidden="true"></i>
+        </span>
+      </template>
+
+      <br>
+
+      <article class="panel is-primary">
+
+        <p class="panel-heading">Add a new review</p>
+
+        <div class="panel-block">
+
+          <form action="/" method="POST">
+
+            <div id="selectMovie" class="columns is-variable is-6">
+
+              <div class="column is-half">
+                <div class="field">
+                  <label class="label">Choose a movie</label>
+                  <div class="control">
+                    <div class="select">
+                      <select name="movieId" id="moviesSelect"></select>
+                      <template id="movieOptionTemplate">
+                        <option></option>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="field">
+                  <label class="label">Or...</label>
+                  <div class="control">
+                    <!-- href="http://localhost:3002/" -->
+                    add a new
+                    <a href="javascript:toggleAddMovie();">
+                      movie
+                      <span class="icon is-small">
+                        <i class="fas fa-plus-square"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <add-movie-component id="addMovie" mode="green" style="display: none;"></add-movie-component>
+
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Review</label>
+                  <div class="control">
+                    <input class="input" type="text" name="description" placeholder="Your own thoughts about the movie">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Rating</label>
+                  <div class="control">
+                    <input class="input" type="number" name="rating" placeholder="Your rating from 1 to 5" min="1"
+                      max="5">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column">
+                <div class="control buttons-area">
+                  <input type="submit" value="Submit" class="button is-primary" />
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </article>
+
+    </div>
+
   </section>
-  <section>
-    <form action="/" method="POST">
-      <fieldset>
-        <legend>Add new review</legend>
-        <p id="selectMovie">
-          <label>Movie:
-            <select name="movieId" id="moviesSelect"></select>
-            <template id="movieOptionTemplate">
-              <option></option>
-            </template>
-          </label>
-          <span>or add <a href="javascript:toggleAddMovie();">new movie</a></span>
-          <!--span>or add <a href="http://localhost:3002/">new movie</a></span-->
-        </p>
-        <section>
-          <add-movie-component id="addMovie" mode="green" style="display: none;"></add-movie-component>
-        </section>
-        <p>
-          <label>Description:
-            <input type="text" name="description" />
-          </label>
-        </p>
-        <p>
-          <label>Rating:
-            <input type="number" name="rating" />
-          </label>
-        </p>
-        <input type="submit" value="Submit" />
-      </fieldset>
-    </form>
-  </section>
+
 </body>
 
 </html>

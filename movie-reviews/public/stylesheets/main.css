@@ -1,9 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #d9ead3ff;
+.card-header-title-prefix {
+    font-weight: 400;
+    font-style: italic;
+    padding-right: 4px;
 }
-
-a {
-  color: #00B7FF;
+.card-header-icon {
+    cursor: default;
+}
+.select, select, form {
+    width: 100%;
+}
+.panel-block {
+    padding: 1.5rem;
+}
+.buttons-area {
+    display: flex;
+    justify-content: flex-end;
 }
