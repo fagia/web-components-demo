@@ -5,26 +5,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <title>Movie Database</title>
-  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link href="/stylesheets/main.css" rel="stylesheet">
   <script src="/scripts/main.js"></script>
   <script type="module" src="/movie-components/movie-components.esm.js"></script>
   <script nomodule src="/movie-components/movie-components.js"></script>
 </head>
 
 <body>
-  <h1>Movie Database</h1>
-  <p>E.G. <a href="https://www.imdb.com/">IMDb</a></p>
-  <section>
-    <h2>Movies:</h2>
-    <ul id="moviesList">
-    </ul>
-    <template id="movieItemTemplate">
-      <li></li>
-    </template>
+
+  <section class="section">
+
+    <div class="container">
+
+      <h1 class="title">
+        <span class="icon">
+          <i class="fas fa-film"></i>
+        </span>
+        Movie Database
+      </h1>
+      <p class="subtitle">E.G. <a href="https://www.imdb.com/">IMDb</a></p>
+
+
+      <section id="moviesList">
+      </section>
+      <template id="movieItemTemplate">
+        <div class="card">
+          <header class="card-header has-background-primary">
+            <p class="card-header-title"></p>
+          </header>
+        </div>
+        <br>
+      </template>
+
+      <br>
+
+      <add-movie-component id="addMovie" mode="blue"></add-movie-component>
+
+    </div>
+
   </section>
-  <section>
-    <add-movie-component id="addMovie" mode="blue"></add-movie-component>
-  </section>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
 </body>
 
 </html>

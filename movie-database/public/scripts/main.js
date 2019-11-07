@@ -12,7 +12,7 @@
                 const movieItemTemplate = document.getElementById('movieItemTemplate').content;
                 movies.forEach(m => {
                     const movieItemEl = document.importNode(movieItemTemplate, true);
-                    movieItemEl.querySelector('li').textContent = `${m.title} (${m.year})`;
+                    movieItemEl.querySelector('.card-header-title').textContent = `${m.title} (${m.year})`;
                     moviesList.appendChild(movieItemEl);
                 });
             } else {

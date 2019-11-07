@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+$bluish: #cfe2f3ff;
+$primary: $bluish;
+$link: darken( $bluish, 40%);
+
+@import "/opt/bulma/bulma.sass";
