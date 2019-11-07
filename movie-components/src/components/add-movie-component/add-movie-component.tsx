@@ -55,12 +55,12 @@ export class AddMovieComponent {
                     <legend>Add new movie</legend>
                     <p>
                         <label>Title:
-                            <input type="text" value={this.movie.title} onInput={(event) => this.handleChangeTitle(event)} />
+                            <input type="text" value={this.movie.title} onInput={(event) => this.handleChangeTitle(event)} required />
                         </label>
                     </p>
                     <p>
                         <label>Year:
-                            <input type="number" value={this.movie.year} onInput={(event) => this.handleChangeYear(event)} />
+                            <input type="number" value={this.movie.year} onInput={(event) => this.handleChangeYear(event)} required min="1888" />
                         </label>
                     </p>
                     <input type="submit" value="Submit" />
