@@ -10,12 +10,16 @@ services:
 
   movie-database:
     image: movie-database:1.0.0
-    build: ./movie-database
+    build:
+      context: ./movie-database
+      dockerfile: ../Dockerfile
     ports:
       - 3002:3000
 
   movie-reviews:
     image: movie-reviews:1.0.0
-    build: ./movie-reviews
+    build:
+      context: ./movie-reviews
+      dockerfile: ../Dockerfile
     ports:
       - 3003:3000

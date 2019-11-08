@@ -22,6 +22,4 @@ RUN sass --sourcemap=none sass/main.scss:stylesheets/main.css && \
 
 WORKDIR /opt/app
 
-ENV DEBUG=movie-reviews:*
-
 CMD [ "npm", "start" ]
