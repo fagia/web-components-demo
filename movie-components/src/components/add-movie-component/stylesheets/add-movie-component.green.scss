@@ -1,5 +1,5 @@
-@import "./add-movie-component.default.scss";
+$greenish: #d9ead3ff;
+$primary: $greenish;
+$link: darken( $greenish, 40%);
 
-form {
-    background-color: #b6d7a8ff;
-}
+@import "./add-movie-component.default.scss";

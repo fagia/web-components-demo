@@ -1,4 +1,4 @@
-import { Component, Prop, EventEmitter, Event, h } from '@stencil/core';
+import { Component, Prop, EventEmitter, Event, h, State, Element } from '@stencil/core';
 
 class Movie {
     title: string;
@@ -16,11 +16,14 @@ class Movie {
 })
 export class AddMovieComponent {
 
-    private movie: Movie = new Movie();
+    @State() private movie: Movie = new Movie();
+    @Element() private element: HTMLElement;
 
     @Prop() mode: string;
+    @Prop({ attribute: 'allow-cancel' }) allowCancel: boolean = false;
 
     @Event() movieCreated: EventEmitter;
+    @Event() movieCreationCanceled: EventEmitter;
 
     handleSubmit(event) {
         event.preventDefault();
@@ -31,6 +34,7 @@ export class AddMovieComponent {
             if (this.status >= 200 && this.status < 400) {
                 const movie = JSON.parse(this.response);
                 component.movieCreated.emit(movie);
+                component.clear();
             } else {
                 console.error('got error from server', this.status, this.response);
             }
@@ -41,30 +45,55 @@ export class AddMovieComponent {
         request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         request.send(JSON.stringify(this.movie));
     }
+    handleCancel() {
+        this.movieCreationCanceled.emit();
+        this.clear();
+    }
     handleChangeTitle(event) {
         this.movie.title = event.target.value;
     }
     handleChangeYear(event) {
         this.movie.year = event.target.value;
     }
+    clear() {
+        this.movie = new Movie();
+        this.element.shadowRoot.querySelector('form').reset();
+    }
     render() {
-        console.log('rendering component with mode: ' + (this.mode ? this.mode : 'default'));
+        console.log(`rendering component with: mode[${this.mode ? this.mode : 'default'}], allow-cancel[${this.allowCancel}]`);
         return (
-            <form onSubmit={(e) => this.handleSubmit(e)}>
-                <fieldset>
-                    <legend>Add new movie</legend>
-                    <p>
-                        <label>Title:
-                            <input type="text" value={this.movie.title} onInput={(event) => this.handleChangeTitle(event)} required />
-                        </label>
-                    </p>
-                    <p>
-                        <label>Year:
-                            <input type="number" value={this.movie.year} onInput={(event) => this.handleChangeYear(event)} required min="1888" />
-                        </label>
-                    </p>
-                    <input type="submit" value="Submit" />
-                </fieldset>
+            <form onSubmit={e => this.handleSubmit(e)}>
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Title</label>
+                            <div class="control">
+                                <input class="input" type="text" onInput={e => this.handleChangeTitle(e)} required placeholder="Movie title" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Year</label>
+                            <div class="control">
+                                <input class="input" type="number" onInput={e => this.handleChangeYear(e)} required min="1888" max={new Date().getFullYear()} placeholder="Movie release year" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="control buttons-area">
+                            {this.allowCancel
+                                ? <input onClick={() => this.handleCancel()} type="button" value="Cancel" class="button cancel" />
+                                : ''
+                            }
+                            <input type="submit" value="Submit" class="button is-primary" />
+                        </div>
+                    </div>
+                </div>
             </form>
         );
     }

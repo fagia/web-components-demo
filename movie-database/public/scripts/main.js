@@ -36,6 +36,7 @@
     const onReady = () => {
         getMovies();
         listenOnMovieCreated();
+        console.log('ready');
     };
 
     if (document.readyState === 'complete' ||

@@ -75,20 +75,36 @@
         reviewsRequest.send();
     };
 
-    const listenOnMovieCreated = () => {
+    const listenOnMovieCreationEvents = () => {
         const addMovie = document.getElementById('addMovie');
-        addMovie.addEventListener('movieCreated', function (event) {
+        addMovie.addEventListener('movieCreated', event => {
             const movie = event.detail;
             console.log('created movie: ', movie);
             initMoviesSelect(movie.id);
             toggleAddMovie();
-        })
+        });
+        addMovie.addEventListener('movieCreationCanceled', () => {
+            toggleAddMovie();
+        });
     };
 
+    var selectMovie;
+    var addMovie;
+    var goToAddMovie;
+    var submitReview;
     const onReady = () => {
         getReviews();
         initMoviesSelect();
-        listenOnMovieCreated();
+        listenOnMovieCreationEvents();
+        selectMovie = document.getElementById('selectMovie');
+        addMovie = document.getElementById('addMovie');
+        goToAddMovie = document.getElementById('goToAddMovie');
+        submitReview = document.getElementById('submitReview');
+        goToAddMovie.addEventListener('click', e => {
+            e.preventDefault();
+            toggleAddMovie();
+        });
+        console.log('ready');
     };
 
     if (document.readyState === 'complete' ||
@@ -99,11 +115,13 @@
     }
 
     const toggleAddMovie = () => {
-        const select = document.getElementById('selectMovie');
-        const add = document.getElementById('addMovie');
-        select.style.display = select.style.display === 'none' ? '' : 'none';
-        add.style.display = add.style.display === 'none' ? '' : 'none';
+        selectMovie.style.display = selectMovie.style.display === 'none' ? '' : 'none';
+        addMovie.style.display = addMovie.style.display === 'none' ? '' : 'none';
+        if (addMovie.style.display === 'none') {
+            submitReview.removeAttribute('disabled');
+        } else {
+            submitReview.setAttribute('disabled', 'disabled');
+        }
     };
 
-    window.toggleAddMovie = toggleAddMovie;
 })();

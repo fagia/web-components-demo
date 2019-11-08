@@ -1,3 +1,13 @@
-form {
-    background-color: #fff2ccff;
+$yellowish: #cfe2f3ff;
+$primary: $yellowish !default;
+$link: darken( $yellowish, 40%) !default;
+
+@import "../../../../node_modules/bulma/bulma.sass";
+
+.buttons-area {
+    display: flex;
+    justify-content: flex-end;
+    .cancel {
+        margin-right: 1rem;
+    }
 }

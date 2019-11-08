@@ -5,3 +5,10 @@ $primary: $bluish;
 $link: darken( $bluish, 40%);
 
 @import "/opt/bulma/bulma.sass";
+
+add-movie-component {
+    width: 100%;
+}
+.panel-block {
+    padding: 1.5rem;
+}

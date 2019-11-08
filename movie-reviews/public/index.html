@@ -76,9 +76,8 @@
                 <div class="field">
                   <label class="label">Or...</label>
                   <div class="control">
-                    <!-- href="http://localhost:3002/" -->
                     add a new
-                    <a href="javascript:toggleAddMovie();">
+                    <a id="goToAddMovie" href="http://localhost:3002/">
                       movie
                       <span class="icon is-small">
                         <i class="fas fa-plus-square"></i>
@@ -90,7 +89,8 @@
 
             </div>
 
-            <add-movie-component id="addMovie" mode="green" style="display: none;"></add-movie-component>
+            <add-movie-component id="addMovie" mode="green" allow-cancel="true" style="display: none;">
+            </add-movie-component>
 
             <div class="columns">
               <div class="column">
@@ -119,7 +119,7 @@
             <div class="columns">
               <div class="column">
                 <div class="control buttons-area">
-                  <input type="submit" value="Submit" class="button is-primary" />
+                  <input type="submit" value="Submit" class="button is-primary" id="submitReview" />
                 </div>
               </div>
             </div>
