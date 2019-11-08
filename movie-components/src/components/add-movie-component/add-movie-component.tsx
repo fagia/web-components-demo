@@ -8,9 +8,9 @@ class Movie {
 @Component({
     tag: 'add-movie-component',
     styleUrls: {
-        default: 'stylesheets/add-movie-component.default.css',
-        green: 'stylesheets/add-movie-component.green.css',
-        blue: 'stylesheets/add-movie-component.blue.css',
+        default: 'stylesheets/add-movie-component.default.scss',
+        green: 'stylesheets/add-movie-component.green.scss',
+        blue: 'stylesheets/add-movie-component.blue.scss',
     },
     shadow: true
 })
