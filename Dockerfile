@@ -1,4 +1,4 @@
-FROM node:13.0.1-alpine
+FROM node:13.0.1-alpine AS back-end
 
 RUN apk update && \
     apk upgrade
@@ -12,14 +12,17 @@ RUN wget https://github.com/jgthms/bulma/releases/download/0.8.0/bulma-0.8.0.zip
 RUN mkdir -p /opt/app/public/stylesheets
 
 WORKDIR /opt/app
-COPY package*.json ./
+COPY back-end/package*.json ./
 RUN npm ci
-COPY . .
+COPY back-end/ ./
 
 WORKDIR /opt/app/public
 RUN sass --sourcemap=none sass/main.scss:stylesheets/main.css && \
     rm -Rf sass
 
+FROM node:13.0.1-alpine AS app
+
+COPY --from=back-end /opt/app /opt/app
 WORKDIR /opt/app
 
 CMD [ "npm", "start" ]
