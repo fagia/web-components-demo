@@ -1,7 +1,7 @@
 {
   "name": "movie-components",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "version": "1.0.0",
+  "description": "Reusable components from movie database application",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",

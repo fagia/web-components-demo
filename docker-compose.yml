@@ -2,17 +2,12 @@ version: "3.7"
 
 services:
 
-  movie-components:
-    image: movie-components:1.0.0
-    build: ./movie-components
-    ports:
-      - 3001:8080
-
   movie-database:
     image: movie-database:1.0.0
     build:
       context: ./movie-database
       dockerfile: ../Dockerfile
+      target: back-end_front-end_components
     ports:
       - 3002:3000
 
@@ -21,6 +16,7 @@ services:
     build:
       context: ./movie-reviews
       dockerfile: ../Dockerfile
+      target: back-end_front-end
     ports:
       - 3003:3000
     depends_on:

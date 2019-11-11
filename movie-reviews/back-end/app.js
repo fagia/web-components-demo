@@ -7,13 +7,16 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
-
 const app = express();
 
-const apiMovieDatabaseProxy = proxy({
+const movieDatabaseProxy = proxy({
+    pathRewrite: {
+        '^/movie-database': '/'
+    },
     target: 'http://movie-database:3000'
 });
-app.use('/api/movie-database', apiMovieDatabaseProxy);
+app.use('/api/movie-database', movieDatabaseProxy);
+app.use('/movie-database/components', movieDatabaseProxy);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -23,13 +26,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/movie-reviews', apiRouter);
-
-const movieComponentsProxy = proxy({
-    pathRewrite: {
-        '^/movie-components': '/'
-    },
-    target: 'http://movie-components:8080'
-});
-app.use('/movie-components', movieComponentsProxy);
 
 module.exports = app;

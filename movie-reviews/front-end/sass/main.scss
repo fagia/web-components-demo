@@ -4,7 +4,7 @@ $greenish: #d9ead3ff;
 $primary: $greenish;
 $link: darken( $greenish, 40%);
 
-@import "/opt/bulma/bulma.sass";
+@import "../node_modules/bulma/bulma.sass";
 
 .card-header-title-prefix {
     font-weight: 400;

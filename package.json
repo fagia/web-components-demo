@@ -25,5 +25,6 @@
     "cypress": "^3.6.1",
     "cypress-shadow-dom": "^1.1.1",
     "start-server-and-test": "^1.10.6"
-  }
+  },
+  "license": "MIT"
 }

@@ -1,7 +1,6 @@
 {
-  "name": "movie-database",
-  "version": "0.0.0",
-  "private": true,
+  "name": "movie-database-back-end",
+  "version": "1.0.0",
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -9,7 +8,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "http-proxy-middleware": "^0.20.0",
     "morgan": "~1.9.1"
-  }
+  },
+  "license": "MIT"
 }

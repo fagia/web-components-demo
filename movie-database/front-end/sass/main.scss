@@ -4,7 +4,7 @@ $bluish: #cfe2f3ff;
 $primary: $bluish;
 $link: darken( $bluish, 40%);
 
-@import "/opt/bulma/bulma.sass";
+@import "../node_modules/bulma/bulma.sass";
 
 add-movie-component {
     width: 100%;

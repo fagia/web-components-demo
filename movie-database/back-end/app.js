@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const proxy = require('http-proxy-middleware');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -9,14 +8,6 @@ const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
 const app = express();
-
-const movieComponentsProxy = proxy({
-    pathRewrite: {
-        '^/movie-components': '/'
-    },
-    target: 'http://movie-components:8080'
-});
-app.use('/movie-components', movieComponentsProxy);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
