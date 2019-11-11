@@ -4,14 +4,15 @@ https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCs
 
 ## Requirements
 
-Docker
-Node (to run e2e tests)
+- Docker
+- Node (to run e2e tests)
 
 ## Tests
 
-Run e2e tests: `npm run e2e-tests:run`
+### E2E tests
 
-Open e2e tests workspace: `npm run e2e-tests:open`
+- Run: `npm run e2e-tests:run`
+- Open workspace: `npm run e2e-tests:open`
 
 ## Install/update
 
