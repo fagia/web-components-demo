@@ -22,7 +22,12 @@ RUN sass --sourcemap=none sass/main.scss:stylesheets/main.css && \
 
 FROM node:13.0.1-alpine AS app
 
-COPY --from=back-end /opt/app /opt/app
 WORKDIR /opt/app
+
+RUN apk --no-cache add bash && \
+    wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
+    chmod +x ./wait-for-it.sh
+
+COPY --from=back-end /opt/app /opt/app
 
 CMD [ "npm", "start" ]

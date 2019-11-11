@@ -23,3 +23,6 @@ services:
       dockerfile: ../Dockerfile
     ports:
       - 3003:3000
+    depends_on:
+      - movie-database
+    command: ["./wait-for-it.sh", "movie-database:3000", "--", "npm", "start"]

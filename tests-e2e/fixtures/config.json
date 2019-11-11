@@ -1,0 +1,8 @@
+{
+    "movieDatabase": {
+        "baseUrl": "http://localhost:3002"
+    },
+    "movieReviews": {
+        "baseUrl": "http://localhost:3003"
+    }
+}

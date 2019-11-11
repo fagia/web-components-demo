@@ -68,7 +68,7 @@ export class AddMovieComponent {
                         <div class="field">
                             <label class="label">Title</label>
                             <div class="control">
-                                <input class="input" type="text" onInput={e => this.handleChangeTitle(e)} required placeholder="Movie title" />
+                                <input class="input" type="text" onInput={e => this.handleChangeTitle(e)} required placeholder="Movie title" name="title" />
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export class AddMovieComponent {
                         <div class="field">
                             <label class="label">Year</label>
                             <div class="control">
-                                <input class="input" type="number" onInput={e => this.handleChangeYear(e)} required min="1888" max={new Date().getFullYear()} placeholder="Movie release year" />
+                                <input class="input" type="number" onInput={e => this.handleChangeYear(e)} required min="1888" max={new Date().getFullYear()} placeholder="Movie release year" name="year" />
                             </div>
                         </div>
                     </div>

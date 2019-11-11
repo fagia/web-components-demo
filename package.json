@@ -1,0 +1,29 @@
+{
+  "name": "web-components-demo",
+  "version": "1.0.0",
+  "description": "https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCsBJw/edit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fagia/web-components-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fagia/web-components-demo/issues"
+  },
+  "homepage": "https://github.com/fagia/web-components-demo#readme",
+  "scripts": {
+    "build": "docker-compose build --force-rm",
+    "prestart": "npm run build",
+    "start": " docker-compose up",
+    "stop": "docker-compose down",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run",
+    "start-and-test": "npm run stop && npx start-server-and-test start http://localhost:3003",
+    "e2e-tests:run": "npm run start-and-test -- cy:run",
+    "e2e-tests:open": "npm run start-and-test -- cy:open"
+  },
+  "devDependencies": {
+    "cypress": "^3.6.1",
+    "cypress-shadow-dom": "^1.1.1",
+    "start-server-and-test": "^1.10.6"
+  }
+}

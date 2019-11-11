@@ -104,6 +104,7 @@
             e.preventDefault();
             toggleAddMovie();
         });
+        goToAddMovie.style.display = '';
         console.log('ready');
     };
 
