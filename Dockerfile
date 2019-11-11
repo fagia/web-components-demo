@@ -1,5 +1,12 @@
 FROM node:13.0.1-alpine AS back-end
 
+WORKDIR /opt/app
+COPY back-end/package*.json ./
+RUN npm ci
+COPY back-end/ ./
+
+FROM node:13.0.1-alpine AS front-end
+
 RUN apk update && \
     apk upgrade
 RUN apk --no-cache add build-base ruby ruby-dev unzip && \
@@ -9,16 +16,19 @@ RUN wget https://github.com/jgthms/bulma/releases/download/0.8.0/bulma-0.8.0.zip
     mv /opt/bulma-0.8.0 /opt/bulma && \
     rm -f /opt/bulma.zip
 
-RUN mkdir -p /opt/app/public/stylesheets
-
 WORKDIR /opt/app
-COPY back-end/package*.json ./
-RUN npm ci
-COPY back-end/ ./
 
-WORKDIR /opt/app/public
+#COPY front-end/package*.json ./
+#RUN npm ci
+
+COPY front-end/sass/main.scss ./sass/main.scss
+
+RUN mkdir -p /opt/app/stylesheets
+
 RUN sass --sourcemap=none sass/main.scss:stylesheets/main.css && \
     rm -Rf sass
+
+COPY front-end/ ./
 
 FROM node:13.0.1-alpine AS app
 
@@ -29,5 +39,6 @@ RUN apk --no-cache add bash && \
     chmod +x ./wait-for-it.sh
 
 COPY --from=back-end /opt/app /opt/app
+COPY --from=front-end /opt/app /opt/app/public
 
 CMD [ "npm", "start" ]
