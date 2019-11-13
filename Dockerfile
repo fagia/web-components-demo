@@ -1,11 +1,11 @@
-FROM node:13.0.1-alpine AS back-end
+FROM node:13.1.0-alpine AS back-end
 
 WORKDIR /opt/app
 COPY back-end/package*.json ./
 RUN npm ci
 COPY back-end/ ./
 
-FROM node:13.0.1-alpine AS front-end
+FROM node:13.1.0-alpine AS front-end
 
 WORKDIR /opt/app
 
@@ -20,11 +20,11 @@ RUN mkdir -p /opt/app/stylesheets && \
 
 COPY front-end/ ./
 
-FROM node:13.0.1-alpine AS back-end_front-end
+FROM node:13.1.0-alpine AS back-end_front-end
 
 WORKDIR /opt/app
 
-RUN apk --no-cache add bash && \
+RUN apk --no-cache add bash coreutils && \
     wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
     chmod +x ./wait-for-it.sh
 
@@ -33,7 +33,7 @@ COPY --from=front-end /opt/app /opt/app/public
 
 CMD [ "npm", "start" ]
 
-FROM node:13.0.1-alpine AS components
+FROM node:13.1.0-alpine AS components
 
 WORKDIR /opt/app
 
@@ -45,7 +45,7 @@ COPY components/ ./
 
 RUN npm run build
 
-FROM node:13.0.1-alpine AS back-end_front-end_components
+FROM node:13.1.0-alpine AS back-end_front-end_components
 
 WORKDIR /opt/app
 
