@@ -7,7 +7,7 @@ https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCs
 ## Requirements
 
 - Docker
-- Node (to run E2E tests)
+- Node
 
 ## Tests
 
@@ -18,11 +18,11 @@ https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCs
 
 ## Install/update
 
-    docker-compose build --force-rm
+    npm run build
 
 ## Run
 
-    docker-compose up
+    npm run start
 
 Movie database application: http://localhost:3002/
 
@@ -32,4 +32,4 @@ Movie reviews application: http://localhost:3003/
 
 Kill the docker-compose process with `Ctrl+c`, then:
 
-    docker-compose down
+    npm run stop
