@@ -17,7 +17,7 @@
     "stop": "docker-compose down",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
-    "start-and-test": "npm run stop && npx start-server-and-test start http://localhost:3003",
+    "start-and-test": "npx start-server-and-test start http://localhost:3003",
     "e2e-tests:run": "npm run start-and-test -- cy:run",
     "e2e-tests:open": "npm run start-and-test -- cy:open"
   },
