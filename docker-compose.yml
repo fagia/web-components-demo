@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   movie-database:
-    image: movie-database:1.0.0
+    image: movie-database
     build:
       context: ./movie-database
       dockerfile: ../Dockerfile
@@ -12,7 +12,7 @@ services:
       - 3002:3000
 
   movie-reviews:
-    image: movie-reviews:1.0.0
+    image: movie-reviews
     build:
       context: ./movie-reviews
       dockerfile: ../Dockerfile

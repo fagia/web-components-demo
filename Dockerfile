@@ -64,5 +64,6 @@ WORKDIR /opt/app
 
 COPY --from=back-end_front-end /opt/app /opt/app
 COPY --from=components /opt/app/www/build /opt/app/public/components
+COPY --from=components /opt/app /opt/components
 
 CMD [ "npm", "start" ]

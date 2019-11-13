@@ -12,6 +12,7 @@
   "homepage": "https://github.com/fagia/web-components-demo#readme",
   "scripts": {
     "build": "docker-compose build --force-rm",
+    "postbuild": "docker create --name movie-database movie-database && docker cp movie-database:/opt/components ./movie-database && docker rm -f movie-database",
     "prestart": "npm run stop && npm run build",
     "start": " docker-compose up",
     "stop": "docker-compose down",
