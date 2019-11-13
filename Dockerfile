@@ -1,11 +1,15 @@
 ARG NODE_IMAGE="node:13.1.0-alpine"
 
+
+
 FROM ${NODE_IMAGE} AS back-end
 
 WORKDIR /opt/app
 COPY back-end/package*.json ./
 RUN npm ci
 COPY back-end/ ./
+
+
 
 FROM ${NODE_IMAGE} AS front-end
 
@@ -16,11 +20,13 @@ RUN npm ci
 
 COPY front-end/sass/main.scss ./sass/main.scss
 
-RUN mkdir -p /opt/app/stylesheets && \
-    npx sass --no-source-map sass/main.scss:stylesheets/main.css && \
-    rm -Rf ./sass
+RUN npx sass --no-source-map sass/main.scss:stylesheets/main.css && \
+    rm -Rf ./sass && \
+    rm -Rf ./node_modules
 
 COPY front-end/ ./
+
+
 
 FROM ${NODE_IMAGE} AS back-end_front-end
 
@@ -35,6 +41,8 @@ COPY --from=front-end /opt/app /opt/app/public
 
 CMD [ "npm", "start" ]
 
+
+
 FROM ${NODE_IMAGE} AS components
 
 WORKDIR /opt/app
@@ -45,7 +53,10 @@ RUN npm ci
 
 COPY components/ ./
 
-RUN npm run build
+RUN npm run build && \
+    rm -Rf ./node_modules
+
+
 
 FROM ${NODE_IMAGE} AS back-end_front-end_components
 
