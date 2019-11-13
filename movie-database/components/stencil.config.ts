@@ -1,6 +1,12 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
+declare const process: {
+  env: {
+    CHROME_BIN: string,
+  }
+};
+
 export const config: Config = {
   namespace: 'movie-components',
   globalScript: './src/globals/global.ts',
@@ -18,6 +24,11 @@ export const config: Config = {
     }
   ],
   plugins: [
-    sass()
-  ]
+    sass(),
+  ],
+  testing: {
+    browserArgs: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'],
+    browserExecutablePath: process.env.CHROME_BIN || null,
+    browserHeadless: true,
+  },
 };

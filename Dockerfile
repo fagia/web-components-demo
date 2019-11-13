@@ -45,6 +45,13 @@ CMD [ "npm", "start" ]
 
 FROM ${NODE_IMAGE} AS components
 
+ENV CHROME_BIN="/usr/bin/chromium-browser"
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
+
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache udev ttf-freefont chromium
+
 WORKDIR /opt/app
 
 COPY components/package*.json ./
@@ -53,7 +60,8 @@ RUN npm ci
 
 COPY components/ ./
 
-RUN npm run build && \
+RUN npm test && \
+    npm run build && \
     rm -Rf ./node_modules
 
 
