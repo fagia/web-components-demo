@@ -10,7 +10,10 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface AddMovieComponent {}
+  interface AddMovieComponent {
+    'allowCancel': boolean;
+    'mode': string;
+  }
   interface MyComponent {
     /**
     * The first name
@@ -48,7 +51,12 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface AddMovieComponent {}
+  interface AddMovieComponent {
+    'allowCancel'?: boolean;
+    'mode'?: string;
+    'onMovieCreated'?: (event: CustomEvent<any>) => void;
+    'onMovieCreationCanceled'?: (event: CustomEvent<any>) => void;
+  }
   interface MyComponent {
     /**
     * The first name
