@@ -60,8 +60,8 @@ RUN npm ci
 
 COPY components/ ./
 
-RUN npm test && \
-    npm run build && \
+RUN npm run build && \
+    npm test && \
     rm -Rf ./node_modules
 
 
