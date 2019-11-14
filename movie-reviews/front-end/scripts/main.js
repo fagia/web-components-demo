@@ -1,7 +1,7 @@
 ; (function () {
     const initMoviesSelect = (selectedMovieId) => {
         const request = new XMLHttpRequest();
-        request.open('GET', '/api/movie-database/movies', true);
+        request.open('GET', '/movie-database/api/movies', true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const movies = JSON.parse(this.response);
@@ -31,12 +31,12 @@
     };
     const getReviews = () => {
         const reviewsRequest = new XMLHttpRequest();
-        reviewsRequest.open('GET', '/api/movie-reviews/reviews', true);
+        reviewsRequest.open('GET', '/movie-reviews/api/reviews', true);
         reviewsRequest.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const reviews = JSON.parse(this.response);
                 const moviesRequest = new XMLHttpRequest();
-                moviesRequest.open('GET', '/api/movie-database/movies', true);
+                moviesRequest.open('GET', '/movie-database/api/movies', true);
                 moviesRequest.onload = function () {
                     if (this.status >= 200 && this.status < 400) {
                         const movies = JSON.parse(this.response);

@@ -1,7 +1,7 @@
 ; (function () {
     const getMovies = () => {
         const request = new XMLHttpRequest();
-        request.open('GET', '/api/movie-database/movies', true);
+        request.open('GET', '/movie-database/api/movies', true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const movies = JSON.parse(this.response);

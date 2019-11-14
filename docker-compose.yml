@@ -8,6 +8,8 @@ services:
       context: ./movie-database
       dockerfile: ../Dockerfile
       target: back-end_front-end_components
+      args:
+        APP_NAME: movie-database
     ports:
       - 3002:3000
 
@@ -17,6 +19,8 @@ services:
       context: ./movie-reviews
       dockerfile: ../Dockerfile
       target: back-end_front-end
+      args:
+        APP_NAME: movie-reviews
     ports:
       - 3003:3000
     depends_on:

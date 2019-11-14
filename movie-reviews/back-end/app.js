@@ -10,13 +10,9 @@ const apiRouter = require('./routes/api');
 const app = express();
 
 const movieDatabaseProxy = proxy({
-    pathRewrite: {
-        '^/movie-database': '/'
-    },
     target: 'http://movie-database:3000'
 });
-app.use('/api/movie-database', movieDatabaseProxy);
-app.use('/movie-database/components', movieDatabaseProxy);
+app.use('/movie-database', movieDatabaseProxy);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,6 +21,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movie-reviews', apiRouter);
+app.use('/movie-reviews/api', apiRouter);
 
 module.exports = app;

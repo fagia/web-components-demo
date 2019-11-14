@@ -34,7 +34,7 @@ export class AddMovieComponent {
         event.preventDefault();
         const component = this;
         const request = new XMLHttpRequest();
-        request.open('POST', '/api/movie-database/movies', true);
+        request.open('POST', '/movie-database/api/movies', true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const movie = JSON.parse(this.response);

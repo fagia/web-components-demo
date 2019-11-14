@@ -17,6 +17,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movie-database', apiRouter);
+app.use('/movie-database/api', apiRouter);
 
 module.exports = app;
