@@ -6,12 +6,16 @@ https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCs
 
 ## Requirements
 
-- Docker
+- Bash shell
 - Node
+- Docker
 
-## Install/update
+## Install
 
     npm install
+
+## Build
+
     npm run build
 
 ## Tests
@@ -34,3 +38,17 @@ Movie reviews application: http://localhost:3003/
 Kill the docker-compose process with `Ctrl+c`, then:
 
     npm run stop
+
+## Development
+
+### Init dependencies
+
+    npm run init
+
+The init command will run `npm install` in every application contained in this demo.
+
+### Update dependencies
+
+    npm run update
+
+The update command will run `npm update` in every application contained in this demo.
