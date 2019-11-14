@@ -9,16 +9,17 @@ https://docs.google.com/presentation/d/1_g8C1417toQ63njVQxDXWpI4IfJk20nBZbRWAmCs
 - Docker
 - Node
 
+## Install/update
+
+    npm install
+    npm run build
+
 ## Tests
 
 ### E2E tests
 
 - Run: `npm run e2e-tests:run`
 - Open workspace: `npm run e2e-tests:open`
-
-## Install/update
-
-    npm run build
 
 ## Run
 
