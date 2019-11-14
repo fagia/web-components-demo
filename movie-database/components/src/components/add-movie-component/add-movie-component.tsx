@@ -1,9 +1,5 @@
 import { Component, Prop, EventEmitter, Event, h, State, Element } from '@stencil/core';
-
-class Movie {
-    title: string;
-    year: number;
-}
+import { Movie } from '../../models/movie';
 
 @Component({
     tag: 'add-movie-component',
@@ -19,11 +15,20 @@ export class AddMovieComponent {
     @State() private movie: Movie = new Movie();
     @Element() private element: HTMLElement;
 
-    @Prop() mode: string;
+    /**
+     * Optional property that allows to define the styling of the component.
+     * Possible values: `blue`, `green`.
+    */
+    @Prop() mode: string = 'default';
+
+    /** Optional property that allows to control whether the form's cancel button has to be rendered or not. */
     @Prop({ attribute: 'allow-cancel' }) allowCancel: boolean = false;
 
-    @Event() movieCreated: EventEmitter;
-    @Event() movieCreationCanceled: EventEmitter;
+    /** Events emitted at every successful movie creation. */
+    @Event() movieCreated: EventEmitter<Movie>;
+
+    /** Event emitted everytime the user clicks on the cancel button. */
+    @Event() movieCreationCanceled: EventEmitter<never>;
 
     handleSubmit(event) {
         event.preventDefault();

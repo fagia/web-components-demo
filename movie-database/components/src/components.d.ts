@@ -7,11 +7,19 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  Movie,
+} from './models/movie';
 
 export namespace Components {
   interface AddMovieComponent {
+    /**
+    * Optional property that allows to control whether the form's cancel button has to be rendered or not.
+    */
     'allowCancel': boolean;
+    /**
+    * Optional property that allows to define the styling of the component. Possible values: `blue`, `green`.
+    */
     'mode': string;
   }
   interface MyComponent {
@@ -52,10 +60,22 @@ declare global {
 
 declare namespace LocalJSX {
   interface AddMovieComponent {
+    /**
+    * Optional property that allows to control whether the form's cancel button has to be rendered or not.
+    */
     'allowCancel'?: boolean;
+    /**
+    * Optional property that allows to define the styling of the component. Possible values: `blue`, `green`.
+    */
     'mode'?: string;
-    'onMovieCreated'?: (event: CustomEvent<any>) => void;
-    'onMovieCreationCanceled'?: (event: CustomEvent<any>) => void;
+    /**
+    * Events emitted at every successful movie creation.
+    */
+    'onMovieCreated'?: (event: CustomEvent<Movie>) => void;
+    /**
+    * Event emitted everytime the user clicks on the cancel button.
+    */
+    'onMovieCreationCanceled'?: (event: CustomEvent<never>) => void;
   }
   interface MyComponent {
     /**
