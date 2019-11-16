@@ -1,5 +1,5 @@
 {
-  "name": "movie-components",
+  "name": "movie-database-components",
   "version": "1.0.0",
   "description": "Reusable components from movie database application",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/movie-components/movie-components.js",
+  "unpkg": "dist/movie-database-components/movie-database-components.js",
   "files": [
     "dist/",
     "loader/"

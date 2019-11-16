@@ -8,7 +8,7 @@ declare const process: {
 };
 
 export const config: Config = {
-  namespace: 'movie-components',
+  namespace: 'movie-database-components',
   globalScript: './src/globals/global.ts',
   outputTargets: [
     {
