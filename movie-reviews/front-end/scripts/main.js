@@ -35,36 +35,22 @@
         reviewsRequest.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const reviews = JSON.parse(this.response);
-                const moviesRequest = new XMLHttpRequest();
-                moviesRequest.open('GET', '/movie-database/api/movies', true);
-                moviesRequest.onload = function () {
-                    if (this.status >= 200 && this.status < 400) {
-                        const movies = JSON.parse(this.response);
-                        const reviewsList = document.getElementById('reviewsList');
-                        while (reviewsList.firstChild) {
-                            reviewsList.firstChild.remove();
-                        }
-                        const reviewItemTemplate = document.getElementById('reviewItemTemplate').content;
-                        const reviewRatingStar = document.getElementById('reviewRatingStar').content;
-                        reviews.forEach(r => {
-                            const movie = movies.filter(m => m.id === r.movieId)[0];
-                            const reviewItemEl = document.importNode(reviewItemTemplate, true);
-                            const ratingEl = reviewItemEl.querySelector('.card-header-icon');
-                            for (var i = 0; i < r.rating; i++) {
-                                ratingEl.appendChild(document.importNode(reviewRatingStar, true));
-                            }
-                            reviewItemEl.querySelector('.card-header-title-suffix').textContent = `${movie.title} (${movie.year})`;
-                            reviewItemEl.querySelector('.content').textContent = r.description;
-                            reviewsList.appendChild(reviewItemEl);
-                        });
-                    } else {
-                        console.error('got error from server', this.status, this.response);
+                const reviewsList = document.getElementById('reviewsList');
+                while (reviewsList.firstChild) {
+                    reviewsList.firstChild.remove();
+                }
+                const reviewItemTemplate = document.getElementById('reviewItemTemplate').content;
+                const reviewRatingStar = document.getElementById('reviewRatingStar').content;
+                reviews.forEach(r => {
+                    const reviewItemEl = document.importNode(reviewItemTemplate, true);
+                    const ratingEl = reviewItemEl.querySelector('.card-header-icon');
+                    for (var i = 0; i < r.rating; i++) {
+                        ratingEl.appendChild(document.importNode(reviewRatingStar, true));
                     }
-                };
-                moviesRequest.onerror = function () {
-                    console.error('failed to send movies request');
-                };
-                moviesRequest.send();
+                    reviewItemEl.querySelector('.card-header-title-suffix').textContent = `${r.movie.title} (${r.movie.year})`;
+                    reviewItemEl.querySelector('.content').textContent = r.description;
+                    reviewsList.appendChild(reviewItemEl);
+                });
             } else {
                 console.error('got error from server', this.status, this.response);
             }
