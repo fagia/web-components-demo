@@ -1,6 +1,6 @@
 Cypress.Commands.add('addReview', (review, rating) => {
     cy.get('#addReview')
-        .find('input[name="description"]')
+        .find('textarea[name="description"]')
         .type(review);
     cy.get('#addReview')
         .find('input[name="rating"]')
