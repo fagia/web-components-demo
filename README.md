@@ -52,3 +52,10 @@ The init command will run `npm install` in every application contained in this d
     npm run update
 
 The update command will run `npm update` in every application contained in this demo.
+
+### Run web components tests
+
+    cd movie-database/components
+    npm run test
+
+Or, to run tests in watch mode: `npm run test.watch`

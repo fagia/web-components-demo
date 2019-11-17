@@ -22,20 +22,6 @@ export namespace Components {
     */
     'mode': string;
   }
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
 }
 
 declare global {
@@ -46,15 +32,8 @@ declare global {
     prototype: HTMLAddMovieComponentElement;
     new (): HTMLAddMovieComponentElement;
   };
-
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
-  };
   interface HTMLElementTagNameMap {
     'add-movie-component': HTMLAddMovieComponentElement;
-    'my-component': HTMLMyComponentElement;
   }
 }
 
@@ -77,24 +56,9 @@ declare namespace LocalJSX {
     */
     'onMovieCreationCanceled'?: (event: CustomEvent<never>) => void;
   }
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
 
   interface IntrinsicElements {
     'add-movie-component': AddMovieComponent;
-    'my-component': MyComponent;
   }
 }
 
@@ -105,7 +69,6 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'add-movie-component': LocalJSX.AddMovieComponent & JSXBase.HTMLAttributes<HTMLAddMovieComponentElement>;
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }
 }

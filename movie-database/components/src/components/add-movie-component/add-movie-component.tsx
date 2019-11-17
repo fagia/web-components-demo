@@ -1,5 +1,6 @@
 import { Component, Prop, EventEmitter, Event, h, State, Element } from '@stencil/core';
 import { Movie } from '../../models/movie';
+import { MovieService } from '../../services/movie-service';
 
 @Component({
     tag: 'add-movie-component',
@@ -14,6 +15,7 @@ export class AddMovieComponent {
 
     @State() private movie: Movie = new Movie();
     @Element() private element: HTMLElement;
+    private movieService: MovieService = new MovieService();
 
     /**
      * Optional property that allows to define the styling of the component.
@@ -30,42 +32,39 @@ export class AddMovieComponent {
     /** Event emitted everytime the user clicks on the cancel button. */
     @Event() movieCreationCanceled: EventEmitter<never>;
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        const component = this;
-        const request = new XMLHttpRequest();
-        request.open('POST', '/movie-database/api/movies', true);
-        request.onload = function () {
-            if (this.status >= 200 && this.status < 400) {
-                const movie = JSON.parse(this.response);
-                component.movieCreated.emit(movie);
-                component.clear();
-            } else {
-                console.error('got error from server', this.status, this.response);
-            }
-        };
-        request.onerror = function () {
-            console.error('failed to send request');
-        };
-        request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        request.send(JSON.stringify(this.movie));
+        const addedMovie = await this.movieService.addMovie(this.movie);
+        this.movieCreated.emit(addedMovie);
+        this.clear();
     }
+
     handleCancel() {
         this.movieCreationCanceled.emit();
         this.clear();
     }
+
     handleChangeTitle(event) {
         this.movie.title = event.target.value;
     }
+
     handleChangeYear(event) {
-        this.movie.year = event.target.value;
+        this.movie.year = parseInt(event.target.value, 10);
     }
+
     clear() {
         this.movie = new Movie();
-        this.element.shadowRoot.querySelector('form').reset();
+        const form = this.element.shadowRoot.querySelector('form');
+        if (form.reset) {
+            form.reset();
+        }
     }
+
+    get state(): Movie {
+        return this.movie;
+    }
+
     render() {
-        console.log(`rendering component with: mode[${this.mode ? this.mode : 'default'}], allow-cancel[${this.allowCancel}]`);
         return (
             <form onSubmit={e => this.handleSubmit(e)}>
                 <div class="columns">
