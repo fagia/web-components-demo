@@ -62,6 +62,7 @@ COPY components/ ./
 
 RUN npm run build && \
     npm test && \
+    npm run build && \
     rm -Rf ./node_modules
 
 
