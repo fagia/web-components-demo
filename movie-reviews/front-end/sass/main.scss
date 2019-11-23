@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-$greenish: #d9ead3ff;
-$primary: $greenish;
-$link: darken( $greenish, 40%);
+$bluish: #cfe2f3ff;
+$primary: $bluish;
+$link: darken( $bluish, 40%);
 
 @import "../node_modules/bulma/bulma.sass";
 
